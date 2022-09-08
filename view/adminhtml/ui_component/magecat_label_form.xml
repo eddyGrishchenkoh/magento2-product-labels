@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">magecat_label_form.page_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Label Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Magecat\Label\Block\Adminhtml\Label\Edit\SaveButton"/>
+            <button name="delete" class="Magecat\Label\Block\Adminhtml\Label\Edit\DeleteButton"/>
+            <button name="back" class="Magecat\Label\Block\Adminhtml\Label\Edit\BackButton"/>
+        </buttons>
+        <namespace>magecat_label_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>magecat_label_form.label_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="label_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="magecat_label/label/save"/>
+        </settings>
+        <dataProvider class="Magecat\Label\Model\Label\DataProvider" name="label_form_data_source">
+            <settings>
+                <requestFieldName>label_id</requestFieldName>
+                <primaryFieldName>label_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="label_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">label</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>label_id</dataScope>
+            </settings>
+        </field>
+        <field name="name" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">label</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Label Name</label>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>
